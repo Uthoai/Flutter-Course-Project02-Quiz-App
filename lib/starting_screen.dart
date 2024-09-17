@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_course_project02_quiz/TextWidget.dart';
+import 'package:flutter_course_project02_quiz/widget/TextWidget.dart';
 
 class StartingScreen extends StatelessWidget {
   const StartingScreen(this.changeScreen,{super.key});
@@ -40,6 +40,4 @@ class StartingScreen extends StatelessWidget {
   }
 
 }
-
-
 

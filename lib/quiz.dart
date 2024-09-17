@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_course_project02_quiz/question.dart';
-import 'StartingScreen.dart';
+import 'package:flutter_course_project02_quiz/question_screen.dart';
+import 'starting_screen.dart';
 
-class Quiz extends StatefulWidget{
+class Quiz extends StatefulWidget {
   const Quiz({super.key});
 
   @override
@@ -11,38 +11,36 @@ class Quiz extends StatefulWidget{
   }
 }
 
-class _Quiz extends State<Quiz>{
-  Widget? activeScreen;
+class _Quiz extends State<Quiz> {
+  var activeScreen = 'starting-screen';
 
-  @override
-  void initState() {
-    activeScreen = StartingScreen(switchScreen);
-    super.initState();
-  }
-
-  void switchScreen(){
+  void switchScreen() {
     setState(() {
-      activeScreen = const QuestionScreen();
+      activeScreen = 'question-screen';
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    Widget screenWidget = StartingScreen(switchScreen);
+
+    if (activeScreen != 'starting-screen'){
+      screenWidget = const QuestionScreen();
+    }
+
     return MaterialApp(
       home: Scaffold(
-        body: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                colors: [Colors.deepPurple,Colors.deepPurpleAccent],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight
-            ),
-          ),
-          child: Center(
-            child: activeScreen,
-          ),
-        )
-      ),
+          body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+              colors: [Colors.deepPurple, Colors.deepPurpleAccent],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight),
+        ),
+        child: Center(
+          child: screenWidget
+        ),
+      )),
     );
   }
 }
